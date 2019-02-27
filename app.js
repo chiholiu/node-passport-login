@@ -1,7 +1,6 @@
 const express = require('express');
 const expresslayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-var bodyParser = require('body-parser')
 
 const app = express();
 
