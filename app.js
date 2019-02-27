@@ -32,7 +32,7 @@ app.use(session({
 //Connect flash
 app.use(flash());
 
-// Global Vars
+// Global Vars // keep in mind that you have to put is after session
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
