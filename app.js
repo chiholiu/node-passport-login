@@ -1,10 +1,13 @@
 const express = require('express');
 const expresslayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-var bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const config = require('./webpack.config.js');
+const compiler = webpack(config);
 
 const app = express();
 
@@ -51,6 +54,12 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
-const PORT = process.env.PORT || 6006;
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+app.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+}));
+
+const PORT = process.env.PORT || 8001;
 
 app.listen(PORT, console.log(`Server started on ${PORT}`));

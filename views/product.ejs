@@ -1,0 +1,11 @@
+<%= title %>
+<%= req.locals %>
+<div>
+    <% for (var i = 0; i < products.length; i++) { %>
+      <img src='<%= products[i].imagePath %>'/>
+      <div><%= products[i].title %></div>
+      <div><%= products[i].description %></div>
+      <div><%= products[i].price %></div>
+      <a href="/add-to-cart/<%= products[i]._id%>">Add to Cart</a>
+    <% } %>
+</div>

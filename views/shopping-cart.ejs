@@ -1,0 +1,8 @@
+<div>
+    <% for(var i = 0; i < products.length; i++) { %>
+    <div><%= products[i].qty %></div> 
+    <div><%= products[i].price %></div>
+    <div><%= products[i].item.title %></div>
+    <% } %>
+    <div>Total Price: <%= totalPrice %></div>
+</div>
