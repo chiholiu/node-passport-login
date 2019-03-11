@@ -1,16 +1,10 @@
 var Product = require('../models/product');
-
-// In order to connect mongoose to seeder
 var mongoose = require('mongoose');
 
-const db = require('./config/keys').MongoURI;
  // "cd seed" to go to the seed directory the type"node product-seeder.js"
- mongoose.connect(db, { useNewUrlParser: true})
- .then(() => console.log('MongoDB Connected...'))
- .catch(err => console.log(err));
+ mongoose.connect('localhost:27017/shopping');
 
-// Connect to Mongo
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var products = [
 	new Product({
