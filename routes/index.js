@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
-<<<<<<< HEAD
-var Product = require('../models/product');
-=======
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
->>>>>>> 2a13b503d92e389b8f2dc1d616fe8c318852af11
 
 // Welcome Page
 router.get('/', (req, res) => res.render('welcome'));
@@ -18,17 +14,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => res.render('dashboar
 
 router.get('/product', (req, res, next) => {
     Product.find(function (err, docs) {
-<<<<<<< HEAD
-        var productChunks = [];
-        var chunkSize = 3;
-        
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            productChunks.push(docs.slice(i, i + chunkSize));
-        }
-        res.render('product', {title: 'Shopping Cart', products: docs, image: docs.imagePath});
-=======
         res.render('product', {title: 'Shopping Cart', products: docs});
->>>>>>> 2a13b503d92e389b8f2dc1d616fe8c318852af11
     });
 });
 
