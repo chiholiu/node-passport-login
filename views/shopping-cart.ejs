@@ -1,0 +1,16 @@
+<% products %>
+
+<div>
+    <% if (products.length > 0) { %>
+    <% for(var i = 0; i < products.length; i++) { %>
+        <div><%= products[i].qty %></div> 
+        <div><%= products[i].price %></div>
+        <div><%= products[i].item.title %></div>
+        <div class="removeFromCart" id="<%= products[i].id %>">x</div>
+
+    <% } %>
+        <div>Total Price: <%= totalPrice %></div>
+    <% } else { %>
+        <p> No item in Cart </p>
+    <% } %>
+</div>

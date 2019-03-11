@@ -1,10 +1,4 @@
-var Product = require('../models/product');
-var mongoose = require('mongoose');
-
- // "cd seed" to go to the seed directory the type"node product-seeder.js"
- mongoose.connect('localhost:27017/shopping');
-
- mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var Product = require('../models/Product');
 
 var products = [
 	new Product({
@@ -45,17 +39,16 @@ var products = [
 	})
 ];
 
-var done = 0;
-for (var i = 0; i < products.length; i++) {
-	products[i].save(function(err, result) {
-		done++;
-		if(done === products.length) {
-			exit();
-		}
-	});
+const done = 0;
+for(let i =  0; i < products.length; i++) {
+    products[i].save(function(err, result) {
+        done++;
+        if(done === products.length) {
+            exit();
+        }
+    });
 }
 
 function exit() {
-	// At the end of the file disconnect mongoose
-	mongoose.disconnect();
+    mongoose.disconnect();
 }

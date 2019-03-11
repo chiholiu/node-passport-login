@@ -1,10 +1,10 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-       a:  [".public/sass/style.scss"]
+       a:  "./public/sass/main.scss", "./public/js/javascript.js"]
     },      
     output: {
         filename: 'main.js',
