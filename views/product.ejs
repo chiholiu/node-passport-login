@@ -3,11 +3,14 @@
 <div>
     <ul>
         <% for(var i=0; i < products.length; i++) { %>
-        <li><img src='<%= products[i].imagePath %>'/></li>
-        <li><%= products[i].title %></li>
-        <li><%= products[i].description %></li>
-        <li><%= products[i].price %></li>
+            <li><img src='<%= products[i].imagePath %>'/></li>
+            <li><%= products[i].title %></li>
+            <li><%= products[i].description %></li>
+            <li><%= products[i].price %></li>
+
+            <li><span><a href="/reduce/<%= products[i].id %>">-</a></span><%= products[i].qty %><span><a href="/add/<%= products[i].id %>">+</a></span></li>
+            <a href="/add-to-cart/<%= products[i].id %>" class="btn btn-success pull-right" role="button">Add to Cart</a>
         <% } %>
     </ul>
-</div>>
+</div>
 

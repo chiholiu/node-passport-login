@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
-
 const app = express();
 
 // Passport config
@@ -48,8 +47,9 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.login = req.isAuthenticated();
+    res.locals.cart = req.session.cart;
     next();
-})
+});
 
 //Routes
 app.use('/', require('./routes/index'));
@@ -62,6 +62,6 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 7002;
 
 app.listen(PORT, console.log(`Server started on ${PORT}`));
