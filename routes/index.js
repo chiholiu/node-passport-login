@@ -49,11 +49,11 @@ router.get('/checkout', (req, res, next) => {
     res.render('checkout', {total: cart.totalPrice});  
 });
 
-router.post('/delete/:id', (req, res) => {
-    Cart.findByIdAndRemove(req.params.id, function(err, doc) {
-        if(err) return res.status(500).send(err);
-        return res.status(200).send(doc);
-    })
-});
+// router.post('/delete/:id', (req, res) => {
+//     Cart.findByIdAndRemove(req.params.id, function(err, doc) {
+//         if(err) return res.status(500).send(err);
+//         return res.status(200).send(req.params.id);
+//     })
+// });
 
 module.exports = router;
