@@ -1,15 +1,17 @@
-<% products %>
+<a href="/product">Product</a>
 
 <div>
     <% if (products.length > 0) { %>
     <% for(var i = 0; i < products.length; i++) { %>
         <div><%= products[i].qty %></div> 
+        <img src="<%= products[i].image %>"/>
         <div><%= products[i].price %></div>
         <div><%= products[i].item.title %></div>
-        <div class="removeFromCart" id="<%= products[i].id %>">x</div>
-
+        <li><span><a href="/reduce/<%= products[i].id %>">-</a></span><%= products[i].qty %><span><a href="/add/<%= products[i].id %>">+</a></span></li>
+        <a href="/remove/<%= products[i].id  %>" class="btn btn-success pull-right" role="button">Remove all</a>
     <% } %>
         <div>Total Price: <%= totalPrice %></div>
+        <a href="/checkout">Checkout</a>
     <% } else { %>
         <p> No item in Cart </p>
     <% } %>

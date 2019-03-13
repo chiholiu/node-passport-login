@@ -33,15 +33,13 @@ module.exports = function(passport) {
 
     passport.serializeUser((user, done) => {
         done(null, user.id); // user.id of serializeUser goes to deserializeUser --> id --> findById --> id
-        console.log('user.id ' + user.id);
+
     });
 
     passport.deserializeUser((id, done) => {
         console.log('id ' + id);
         User.findById(id, function(err, user) {
-            console.log('id ' + id);
-            done(err, user); 
-            console.log('user ' + user); // user object attaches to the request as req.user
+            done(err, user); // user object attaches to the request as req.user
         });
     });
 }

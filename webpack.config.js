@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-       a:  ["./public/sass/main.scss", "./public/js/javascript.js"]
+       a: [ "./public/sass/main.scss", "./public/js/javascript.js" ]
     },      
     output: {
         filename: 'main.js',
@@ -36,5 +36,5 @@ module.exports = {
             filename: "main.css"
         })
     ],
-    mode: 'production'
+    mode: 'production',
 };

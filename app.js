@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
-
 const app = express();
 
 // Passport config
@@ -48,12 +47,14 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.login = req.isAuthenticated();
+    res.locals.cart = req.session.cart;
     next();
-})
+});
 
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use(express.static(__dirname + '/public'));
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
