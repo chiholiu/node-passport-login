@@ -62,6 +62,6 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
 
-const PORT = process.env.PORT || 7002;
+const PORT = process.env.PORT || 8002;
 
 app.listen(PORT, console.log(`Server started on ${PORT}`));
