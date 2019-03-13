@@ -74,18 +74,9 @@ router.get('/checkout', isLoggedIn, (req, res, next) => {
       return res.redirect('/shopping-cart');
     }
 
-<<<<<<< HEAD
-// router.post('/delete/:id', (req, res) => {
-//     Cart.findByIdAndRemove(req.params.id, function(err, doc) {
-//         if(err) return res.status(500).send(err);
-//         return res.status(200).send(req.params.id);
-//     })
-// });
-=======
     let cart = new Cart(req.session.cart);
     res.render('checkout', {products: cart.generateArray(), total: cart.totalPrice});  
 });
->>>>>>> 03e58eab3d258d5d39c7c1ac9aa76b055a137ae7
 
 module.exports = router;
 
