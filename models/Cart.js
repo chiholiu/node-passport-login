@@ -26,6 +26,7 @@ module.exports = function Cart(oldCart) {
     };
 
     this.addByOne = function(id) {
+        console.log('this is' + this);
         this.items[id].qty++;
         this.items[id].price += this.items[id].item.price;
         this.totalQty++;

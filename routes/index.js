@@ -44,9 +44,6 @@ router.get('/reduce/:id', (req, res, next) => {
 router.get('/add/:id', (req, res, next) => {
     let productId = req.params.id;
     let cart = new Cart(req.session.cart ? req.session.cart : {});
-    var windowVar = window.location.pathname;
-    console.log(windowVar);
-
 
     cart.addByOne(productId);
     req.session.cart = cart;
