@@ -10,6 +10,13 @@ const config = require('./webpack.config.js');
 const compiler = webpack(config);
 const app = express();
 
+// upload images
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
+
+const httpServer = http.createServer(app);
+
 // Passport config
 require('./config/passport')(passport);
 
@@ -62,6 +69,8 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 7005;
 
-app.listen(PORT, console.log(`Server started on ${PORT}`));
+httpServer.listen(PORT, () => {
+    console.log(`Server started on ${PORT}`)
+});

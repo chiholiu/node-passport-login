@@ -11,7 +11,6 @@
         class="form-control"
         placeholder="Enter Name"
         value="<%= typeof name != 'undefined' ? name : '' %>"
-        
       />
         <!-- check if typeof name is not equal to undefined and then show the name otherwise leave it blank -->
     </div>
@@ -47,6 +46,13 @@
         placeholder="Confirm Password"
         value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
       />
+    </div>
+    <div>
+      <input 
+        type="file" 
+        id="imageUpload"
+        name="file"
+      /> 
     </div>
     <button type="submit">
       Register
