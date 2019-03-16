@@ -3,7 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
-let currentUrl; 
+let currentUrl;
 
 // Welcome Page
 router.get('/', (req, res) => res.render('welcome'));
@@ -22,7 +22,7 @@ router.get('/product', (req, res, next) => {
 router.get('/add-to-cart/:id', (req, res, next) => {
     let productId = req.params.id;
     let cart = new Cart(req.session.cart ? req.session.cart : {});
-    console.log(cart);
+
     Product.findById(productId, function(err, product) {
         if(err) {
             return res.redirect('/product');
@@ -63,9 +63,7 @@ router.get('/shopping-cart', (req, res, next) => {
     if(!req.session.cart) {
         return res.render('shopping-cart', {products: null});
     }
-
-    console.log('req.session.cart shopping-cart' + req.session.cart);
-
+    
     currentUrl = '/shopping-cart';
 
     let cart = new Cart(req.session.cart);
@@ -76,8 +74,6 @@ router.get('/checkout', isLoggedIn, (req, res, next) => {
     if (!req.session.cart) {
       return res.redirect('/shopping-cart');
     }
-
-    console.log('req.session.cart checkout' + req.session.cart);
 
     currentUrl = '/checkout';
 
