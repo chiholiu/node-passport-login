@@ -48,10 +48,12 @@
       />
     </div>
     <div>
+      <label for="imageUpload">Confirm Password</label>
       <input 
         type="file" 
         id="imageUpload"
-        name="file"
+        name="imageUpload"
+        value="<%= typeof imageUpload != 'undefined' ? imageUpload : '' %>"
       /> 
     </div>
     <button type="submit">

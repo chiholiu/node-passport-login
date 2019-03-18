@@ -15,9 +15,10 @@ const handleError = (err, res) => {
 };
 
 const upload = multer({
-  dest: "/Users/cl/Projecten/node-passport-login/store/userImages"
+  dest: "store/uploaded/files"
   // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
+
 
 // Login Page
 router.get('/login', (req, res) => res.render('login'));
@@ -31,7 +32,7 @@ router.post('/register', (req, res) => {
     let errors = [];
 
     // Check required fields
-    if(!name || !email || !password || !password2 || imageUpload) {
+    if(!name || !email || !password || !password2 || !imageUpload) {
       errors.push({msg: 'Please fill in all fields'});
     }
 
@@ -44,12 +45,34 @@ router.post('/register', (req, res) => {
       errors.push({msg: 'Passwords do not match'});
     }
 
-    if(imageUpload.length < 1) {
-      errors.push({msg: 'Image is not uploaded'});
-    }
+    console.log('imageUpload ' + imageUpload);
 
-    if(imageUpload.length > 0) {
-      console.log('hello world');
+    if(imageUpload != undefined) {
+      upload.single("file" /* name attribute of <file> element in your form */),
+      (req, res) => {
+        const tempPath = req.file.path;
+        const targetPath = path.join(__dirname, "./uploads/image.png");
+    
+        if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+          fs.rename(tempPath, targetPath, err => {
+            if (err) return handleError(err, res);
+    
+            res
+              .status(200)
+              .contentType("text/plain")
+              .end("File uploaded!");
+          });
+        } else {
+          fs.unlink(tempPath, err => {
+            if (err) return handleError(err, res);
+    
+            res
+              .status(403)
+              .contentType("text/plain")
+              .end("Only .png files are allowed!");
+          });
+        }
+      }
     }
 
     if (errors.length > 0) {
